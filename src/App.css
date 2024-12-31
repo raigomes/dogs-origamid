@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 ul, li {
-  list-style: none;
+  list-style: none;7
   padding: 0px;
   margin: 0px;
 }
@@ -36,6 +36,20 @@ button, input {
 a {
   text-decoration: none;
   color: #333;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 10rem);
+}
+
+.AppBody {
+  flex: 1;
+}
+
+.mainContainer {
+  margin-top: 2rem;
 }
 
 .container {
