@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <nav className={`${styles.nav} container`}>
-        <Link to="/" end className={styles.logo}>
+        <Link to="/" className={styles.logo}>
             <Dog />
         </Link>
         <Link to="/login" className={styles.login}>
