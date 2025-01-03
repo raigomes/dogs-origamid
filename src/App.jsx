@@ -12,6 +12,8 @@ import Conta from "./components/Conta/Conta";
 import ContaPostar from "./components/Conta/ContaPostar";
 import ContaEstatisticas from "./components/Conta/ContaEstatisticas";
 import ContaFeed from "./components/Conta/ContaFeed";
+import Profile from "./components/Profile";
+import Erro404 from "./components/Erro404";
 
 const App = () => {
   return (
@@ -21,6 +23,7 @@ const App = () => {
         <main className="AppBody">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="perfil/:nome" element={<Profile />} />
             <Route path="login" element={<Login />}>
               <Route index element={<LoginForm />} />
               <Route path="perdeu" element={<LoginPerdeu />} />
@@ -31,6 +34,7 @@ const App = () => {
               <Route path="estatisticas" element={<ContaEstatisticas />} />
               <Route path="postar" element={<ContaPostar />} />
             </Route>
+            <Route path="*" element={<Erro404 />} />
           </Routes>
         </main>
         <Footer />
