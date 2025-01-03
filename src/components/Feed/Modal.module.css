@@ -1,0 +1,145 @@
+.modal {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,.4);
+    display: flex;
+    z-index: 1000;
+    padding: 2rem calc(4rem + 15px) 2rem 4rem;
+}
+
+.photo {
+    margin: auto;
+    height: 36rem;
+    border-radius: .2rem;
+    background: white;
+    display: grid;
+    grid-template-columns: 36rem 20rem;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(.8);
+    animation: scaleUp .3s forwards;
+}
+
+.img {
+    grid-row: 1/4;
+}
+
+.details {
+    padding: 2rem 2rem 0;
+}
+
+.author {
+    opacity: .5;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.visualizacoes:before {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 10px;
+    margin-right: .5rem;
+    background: url(../../img/visualizacao-black.svg);
+}
+
+.attributes {
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.attributes li {
+    margin-right: 2rem;
+}
+
+.attributes li:before {
+    content: "";
+    display: inline-block;
+    height: 20px;
+    margin-right: .5rem;
+    position: relative;
+    top: 3px;
+    width: 2px;
+    background: #333;
+    margin-top: 5px;
+}
+
+.comments {
+    overflow-y: auto;
+    word-break: break-word;
+    padding: 0 2rem;
+}
+
+.comments li {
+    margin-bottom: .5rem;
+    line-height: 1.2;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: stretch;
+    margin: 1rem;
+}
+
+.textarea {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-family: var(--type-first);
+    resize: none;
+    border: 1px solid #eee;
+    padding: .5rem;
+    border-radius: .2rem;
+    background: #eee;
+    transition: .2s;
+}
+
+.button {
+    border: none;
+    cursor: pointer;
+    color: #333;
+    background: transparent;
+    font-size: 1rem;
+    padding: 0 1rem;
+    overflow: hidden;
+}
+
+.button:focus, .button:hover {
+    outline: none;
+}
+
+.button:focus svg path, .button:hover svg path {
+    fill: #fea;
+    stroke: #fb1;
+}
+
+.button:focus svg g, .button:hover svg g {
+    animation: latir .6s infinite;
+}
+
+@keyframes scaleUp {
+    to {
+        opacity: initial;
+        transform: initial
+    }
+}
+
+@keyframes latir {
+    0% {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
