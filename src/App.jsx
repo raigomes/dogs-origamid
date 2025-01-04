@@ -23,7 +23,7 @@ const App = () => {
         <main className="AppBody">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="perfil/:nome" element={<Profile />} />
+            <Route path="perfil/:name" element={<Profile />} />
             <Route path="login" element={<Login />}>
               <Route index element={<LoginForm />} />
               <Route path="perdeu" element={<LoginPerdeu />} />
