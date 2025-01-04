@@ -14,12 +14,12 @@ const Modal = (props) => {
     <div className={styles.modal} onClick={handleClick}>
       <div className={styles.photo}>
         <div className={styles.img}>
-          <FeedPhoto />
+          <FeedPhoto src={props.data.src} alt={props.data.title} />
         </div>
         <div className={styles.details}>
-          <ModalDetails />
+          <ModalDetails data={props.data} />
         </div>
-        <ModalComments />
+        <ModalComments id={props.data.id} />
       </div>
     </div>
   );

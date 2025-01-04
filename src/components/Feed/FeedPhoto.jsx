@@ -1,10 +1,10 @@
 import React from 'react'
 import styles from './Feed.module.css'
 
-const FeedPhoto = () => {
+const FeedPhoto = ({src, alt}) => {
   return (
     <div className={styles.wrapper}>
-        <img src="https://loremflickr.com/1000/1000/dog?random=1" alt="Doguinho" className={styles.img} />
+        <img src={src} alt={alt} className={styles.img} />
     </div>
   )
 }

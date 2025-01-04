@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.css";
 import Comment from "../../img/comment.svg?react";
+import { COMMENT_GET } from "../../api/services";
 
-const ModalComments = () => {
+const ModalComments = ({ id }) => {
+  const [comments, setComments] = useState([]);
+  const { endpoint } = COMMENT_GET(id);
+
+  useEffect(() => {
+    fetch(endpoint)
+      .then((response) => response.json())
+      .then((data) => setComments(data));
+  }, [comments]);
+
+
   return (
     <>
       <ul className={styles.comments}>
-        <li>
-          <b>dog: </b>
-          <span>200 reais</span>
-        </li>
+        {comments.map(comment => (
+          <li key={comment.comment_ID}>
+            <b>{comment.comment_author}: </b>
+            <span>{comment.comment_content}</span>
+          </li>
+        ))}
       </ul>
       <form className={styles.form}>
         <textarea
