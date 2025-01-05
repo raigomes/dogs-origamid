@@ -17,17 +17,21 @@ const Feed = ({ photos }) => {
   if (!photos) return null;
 
   return (
-    <div>
+    <>
       {modal}
       <ul className={`${styles.feed} animeLeft`}>
         {photos.map((photo) => (
-          <li key={photo.id} className={styles.photo} onClick={() => openModal(photo)}>
+          <li
+            key={photo.id}
+            className={styles.photo}
+            onClick={() => openModal(photo)}
+          >
             <FeedPhoto src={photo.src} alt={photo.title} />
             <span className={styles.visualizacao}>{photo.acessos}</span>
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 
