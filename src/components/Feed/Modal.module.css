@@ -138,6 +138,19 @@
     animation: latir .6s infinite;
 }
 
+@media (max-width: 64rem) {
+    .photo {
+        height:auto;
+        max-height: calc(100vh - 4rem);
+        overflow-y: auto;
+        grid-template-columns: minmax(20rem,40rem)
+    }
+
+    .img {
+        grid-row: 1
+    }
+}
+
 @keyframes scaleUp {
     to {
         opacity: initial;
