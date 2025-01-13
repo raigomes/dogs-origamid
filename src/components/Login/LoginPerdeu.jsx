@@ -7,7 +7,7 @@ const LoginPerdeu = () => {
       <h1 className="title">Perdeu a senha?</h1>
       <form>
         <div className={styles.wrapper}>
-            <label for="login" className={styles.label}>Email / Usuário</label>
+            <label htmlFor="login" className={styles.label}>Email / Usuário</label>
             <input id="login" name="login" type="text" className={styles.input} />
         </div>
         <button className={styles.button} >Enviar Email</button>
