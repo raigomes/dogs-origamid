@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Feed.module.css";
-import Modal from "./Modal";
+import FeedModal from "./FeedModal";
 import FeedPhoto from "./FeedPhoto";
 
 const Feed = ({ photos }) => {
   const [modal, setModal] = useState(null);
 
   function openModal(data) {
-    setModal(<Modal data={data} close={closeModal} />);
+    setModal(<FeedModal data={data} close={closeModal} />);
   }
 
   function closeModal() {

@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Modal.module.css";
+import styles from "./Feed.module.css";
 import Photo from "../Photo/Photo";
 
-const Modal = (props) => {
+const FeedModal = (props) => {
 
   function handleClick(e) {
     (e.target.className === styles.modal) && props.close();
@@ -15,4 +15,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default FeedModal;
