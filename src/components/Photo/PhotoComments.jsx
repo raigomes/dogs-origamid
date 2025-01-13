@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Modal.module.css";
+import styles from "./Photo.module.css";
 import Comment from "../../img/comment.svg?react";
 import { COMMENT_GET } from "../../api/services";
 
-const ModalComments = ({ id }) => {
+const PhotoComments = ({ id }) => {
   const [comments, setComments] = useState([]);
   const { endpoint } = COMMENT_GET(id);
 
@@ -39,4 +39,4 @@ const ModalComments = ({ id }) => {
   );
 };
 
-export default ModalComments;
+export default PhotoComments;

@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Modal.module.css"
+import styles from "./Photo.module.css"
 import { Link } from "react-router-dom";
 
-const FeedDetails = ({data}) => {
+const PhotoDetails = ({data}) => {
   if(!data) return null
   return (
     <div>
@@ -21,4 +21,4 @@ const FeedDetails = ({data}) => {
   );
 };
 
-export default FeedDetails;
+export default PhotoDetails;

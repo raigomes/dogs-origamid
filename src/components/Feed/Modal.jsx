@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "./Modal.module.css";
-import FeedPhoto from "./FeedPhoto";
-import ModalDetails from "./ModalDetails";
-import ModalComments from "./ModalComments";
+import Photo from "../Photo/Photo";
 
 const Modal = (props) => {
 
@@ -12,15 +10,7 @@ const Modal = (props) => {
 
   return (
     <div className={styles.modal} onClick={handleClick}>
-      <div className={styles.photo}>
-        <div className={styles.img}>
-          <FeedPhoto src={props.data.src} alt={props.data.title} />
-        </div>
-        <div className={styles.details}>
-          <ModalDetails data={props.data} />
-        </div>
-        <ModalComments id={props.data.id} />
-      </div>
+      <Photo data={props.data} />
     </div>
   );
 };

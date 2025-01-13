@@ -14,6 +14,7 @@ import ContaEstatisticas from "./components/Conta/ContaEstatisticas";
 import ContaFeed from "./components/Conta/ContaFeed";
 import Profile from "./components/Profile";
 import Erro404 from "./components/Erro404";
+import PhotoPage from "./components/Photo/PhotoPage";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="perfil/:name" element={<Profile />} />
+            <Route path="foto/:id" element={<PhotoPage />} />
             <Route path="login" element={<Login />}>
               <Route index element={<LoginForm />} />
               <Route path="perdeu" element={<LoginPerdeu />} />
