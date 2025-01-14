@@ -1,37 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Login.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { TOKEN_POST, TOKEN_VALIDATE_POST } from "../../api/services";
-
-const TOKEN = "dog_token";
+import { Link } from "react-router-dom";
+import { TOKEN_POST } from "../../api/services";
+import UserContext from "../../UserContext";
 
 const LoginForm = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setToken(localStorage.getItem(TOKEN))
-    validateToken(token);
-  }, [token]);
+  const { login, setToken } = useContext(UserContext)
 
   function setError(text) {
     setMessage(
       <p style={{ color: "rgb(255, 51, 17)", margin: "1rem 0px" }}>{text}</p>
     );
-  }
-
-  function validateToken(t) {
-    const { endpoint, method, headers } = TOKEN_VALIDATE_POST(t);
-
-    fetch(endpoint, {
-      method,
-      headers,
-    })
-      .then((response) => response.json())
-      .then(({ data }) => data.status === 200 && navigate("/conta"));
   }
 
   function handleLogin(e) {
@@ -47,12 +29,13 @@ const LoginForm = () => {
       .then((response) => response.json())
       .then((data) => {
         if (!data.token) return setError("Dados incorretos.");
-        localStorage.setItem(TOKEN, data.token);
         setToken(data.token);
+        login()
       })
       .catch((e) => {
         console.error("[Dogs]", e);
         setError("Erro desconhecido");
+        sair()
       });
   }
 

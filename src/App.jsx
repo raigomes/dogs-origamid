@@ -15,31 +15,34 @@ import ContaFeed from "./components/Conta/ContaFeed";
 import Profile from "./components/Profile";
 import Erro404 from "./components/Erro404";
 import PhotoPage from "./components/Photo/PhotoPage";
+import UserStorage from "./UserStorage";
 
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <main className="AppBody">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="perfil/:name" element={<Profile />} />
-            <Route path="foto/:id" element={<PhotoPage />} />
-            <Route path="login" element={<Login />}>
-              <Route index element={<LoginForm />} />
-              <Route path="perdeu" element={<LoginPerdeu />} />
-              <Route path="criar" element={<LoginCadastro />} />
-            </Route>
-            <Route path="conta" element={<Conta />}>
-              <Route index element={<ContaFeed />} />
-              <Route path="estatisticas" element={<ContaEstatisticas />} />
-              <Route path="postar" element={<ContaPostar />} />
-            </Route>
-            <Route path="*" element={<Erro404 />} />
-          </Routes>
-        </main>
-        <Footer />
+        <UserStorage>
+          <Header />
+          <main className="AppBody">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="perfil/:name" element={<Profile />} />
+              <Route path="foto/:id" element={<PhotoPage />} />
+              <Route path="login" element={<Login />}>
+                <Route index element={<LoginForm />} />
+                <Route path="perdeu" element={<LoginPerdeu />} />
+                <Route path="criar" element={<LoginCadastro />} />
+              </Route>
+              <Route path="conta" element={<Conta />}>
+                <Route index element={<ContaFeed />} />
+                <Route path="estatisticas" element={<ContaEstatisticas />} />
+                <Route path="postar" element={<ContaPostar />} />
+              </Route>
+              <Route path="*" element={<Erro404 />} />
+            </Routes>
+          </main>
+          <Footer />
+        </UserStorage>
       </BrowserRouter>
     </div>
   );

@@ -1,38 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.css";
 import Dog from "../img/dog.svg?react";
 import { Link } from "react-router-dom";
-import { TOKEN_VALIDATE_POST, USER_GET } from "../api/services";
-
-const TOKEN = "dog_token";
+import { USER_GET } from "../api/services";
+import UserContext from "../UserContext";
 
 const Header = () => {
   const [user, setUser] = useState(null);
+  const { loggedIn, getToken } = useContext(UserContext)
 
   useEffect(() => {
-    const token = localStorage.getItem(TOKEN);
-    
-    async function validateToken(t) {
-      const { endpoint, method, headers } = TOKEN_VALIDATE_POST(t);
-      const response = await fetch(endpoint, { method, headers })
-      const { data } = await response.json()
-        
-      return (data.status === 200)
-    }
+    const token = getToken();
 
     async function fetchUser(t) {
       const { endpoint, headers } = USER_GET(t);
-      const isValid = await validateToken(t)
-  
-      if(!isValid) return null
-
       const response = await fetch(endpoint, { headers })
       const data = await response.json()
       setUser(data.username);
     }
 
-    fetchUser(token);
-  }, [user]);
+    loggedIn && fetchUser(token);
+  }, [loggedIn]);
 
   return (
     <header className={styles.header}>
@@ -41,13 +29,13 @@ const Header = () => {
           <Dog />
         </Link>
 
-        {user && (
+        {loggedIn && (
           <Link to="/conta" className={styles.login}>
             {user}
           </Link>
         )}
 
-        {!user && (
+        {!loggedIn && (
           <Link to="/login" className={styles.login}>
             Login / Criar
           </Link>
