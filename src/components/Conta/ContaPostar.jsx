@@ -6,19 +6,19 @@ const ContaPostar = () => {
     <section className={`${styles.photoPost} animeLeft`}>
       <form>
         <div className={styles.wrapper}>
-          <label for="nome" className={styles.label}>
+          <label htmlFor="nome" className={styles.label}>
             Nome
           </label>
           <input type="text" id="nome" name="nome" className={styles.input} />
         </div>
         <div className={styles.wrapper}>
-          <label for="peso" className={styles.label}>
+          <label htmlFor="peso" className={styles.label}>
             Peso
           </label>
           <input type="text" id="peso" name="peso" className={styles.input} />
         </div>
         <div className={styles.wrapper}>
-          <label for="idade" className={styles.label}>
+          <label htmlFor="idade" className={styles.label}>
             Idade
           </label>
           <input type="text" id="idade" name="idade" className={styles.input} />
