@@ -11,7 +11,7 @@ const PhotoDetails = ({data}) => {
         <span className={styles.visualizacoes}>{data.acessos}</span>
       </p>
       <h1 className="title">
-        <a href={`/foto/${data.id}`}>{data.title}</a>
+        <Link to={`/foto/${data.id}`}>{data.title}</Link>
       </h1>
       <ul className={styles.attributes}>
         <li>{data.peso} kg</li>
