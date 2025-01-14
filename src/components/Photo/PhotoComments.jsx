@@ -11,7 +11,7 @@ const PhotoComments = ({ id }) => {
     fetch(endpoint)
       .then((response) => response.json())
       .then((data) => setComments(data));
-  }, [comments]);
+  }, []);
 
 
   return (
