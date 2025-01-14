@@ -7,8 +7,6 @@ import Plus from '../../img/plus.svg?react'
 import Exit from '../../img/exit.svg?react'
 import UserContext from '../../UserContext'
 
-const TOKEN = "dog_token";
-
 const Conta = () => {
   const [title, setTitle] = useState("")
   const { sair } = useContext(UserContext)
