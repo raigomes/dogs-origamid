@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { PHOTO_GET } from "../../api/services";
 import Photo from "./Photo";
+import Head from "../Head";
 
 const PhotoPage = (props) => {
   const [data, setData] = useState(null);
@@ -23,6 +24,7 @@ const PhotoPage = (props) => {
   if (!data) return null;
   return (
     <section className="container mainContainer">
+      <Head title={`${data.title} | Dogs`} description="" />
       <Photo data={data} id={params.id} />
     </section>
   );

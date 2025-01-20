@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./Login.module.css";
+import Head from "../Head";
 
 const LoginPerdeu = () => {
   return (
     <section className="animeLeft">
+      <Head title="Perdeu a senha | Dogs" description="" />
       <h1 className="title">Perdeu a senha?</h1>
       <form>
         <div className={styles.wrapper}>

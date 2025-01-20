@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Feed from "./Feed/Feed";
-import { PHOTOS_GET, PHOTOS_QUERY_GET } from "../api/services";
+import { PHOTOS_QUERY_GET } from "../api/services";
+import Head from "./Head";
 
 const Home = () => {
   const [page, setPage] = useState(1);
@@ -61,6 +62,7 @@ const Home = () => {
 
   return (
     <section className="container mainContainer">
+      <Head title="Fotos | Dogs" description="Home do site Dogs, com o feed de fotos." />
       <div>{feed}</div>
       {loading && <h1>Loading....</h1>}
     </section>

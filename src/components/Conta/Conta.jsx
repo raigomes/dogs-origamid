@@ -6,6 +6,7 @@ import Bars from '../../img/bars.svg?react'
 import Plus from '../../img/plus.svg?react'
 import Exit from '../../img/exit.svg?react'
 import UserContext from '../../UserContext'
+import Head from '../Head'
 
 const Conta = () => {
   const [title, setTitle] = useState("")
@@ -31,6 +32,7 @@ const Conta = () => {
 
   return (
     <section className="container">
+      <Head title="Minha Conta | Dogs" description="" />
       <header className={styles.header}>
         <h1 className="title">{title}</h1>
         <nav className={styles.nav}>
