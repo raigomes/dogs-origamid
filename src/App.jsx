@@ -15,13 +15,13 @@ import ContaFeed from "./components/Conta/ContaFeed";
 import Profile from "./components/Profile";
 import Erro404 from "./components/Erro404";
 import PhotoPage from "./components/Photo/PhotoPage";
-import UserStorage from "./context/UserStorage";
+import UserProvider from "./context/UserProvider";
 
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <UserStorage>
+        <UserProvider>
           <Header />
           <main className="AppBody">
             <Routes>
@@ -42,7 +42,7 @@ const App = () => {
             </Routes>
           </main>
           <Footer />
-        </UserStorage>
+        </UserProvider>
       </BrowserRouter>
     </div>
   );

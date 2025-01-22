@@ -3,7 +3,7 @@ import { UserContext } from "./UserContext";
 import { useLogin } from "../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
 
-const UserStorage = ({ children }) => {
+const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const { getToken, validateToken, deleteToken } = useLogin()
   const navigate = useNavigate();
@@ -31,4 +31,4 @@ const UserStorage = ({ children }) => {
   );
 };
 
-export default UserStorage;
+export default UserProvider;
