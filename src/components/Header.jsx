@@ -3,7 +3,7 @@ import styles from "./Header.module.css";
 import Dog from "../img/dog.svg?react";
 import { Link } from "react-router-dom";
 import { USER_GET } from "../api/services";
-import UserContext from "../UserContext";
+import { UserContext } from "../context/UserContext";
 
 const Header = () => {
   const [user, setUser] = useState(null);

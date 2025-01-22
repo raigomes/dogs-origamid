@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { TOKEN_POST } from "../../api/services";
-import UserContext from "../../UserContext";
+import { UserContext } from "../../context/UserContext";
 
 const LoginForm = () => {
   const [username, setUserName] = useState("");

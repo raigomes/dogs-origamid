@@ -15,7 +15,7 @@ import ContaFeed from "./components/Conta/ContaFeed";
 import Profile from "./components/Profile";
 import Erro404 from "./components/Erro404";
 import PhotoPage from "./components/Photo/PhotoPage";
-import UserStorage from "./UserStorage";
+import UserStorage from "./context/UserStorage";
 
 const App = () => {
   return (

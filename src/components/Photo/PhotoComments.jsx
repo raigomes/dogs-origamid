@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./Photo.module.css";
 import Comment from "../../img/comment.svg?react";
 import { COMMENT_GET } from "../../api/services";
-import UserContext from "../../UserContext";
+import { UserContext } from "../../context/UserContext";
 
 const PhotoComments = ({ id }) => {
   const [comments, setComments] = useState([]);

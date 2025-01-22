@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TOKEN_VALIDATE_POST } from "./api/services";
-import UserContext from "./UserContext";
+import { TOKEN_VALIDATE_POST } from "../api/services";
+import { UserContext } from "./UserContext";
 
 const TOKEN = "dog_token";
 

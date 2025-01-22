@@ -5,7 +5,7 @@ import Dashboard from '../../img/dashboard.svg?react'
 import Bars from '../../img/bars.svg?react'
 import Plus from '../../img/plus.svg?react'
 import Exit from '../../img/exit.svg?react'
-import UserContext from '../../UserContext'
+import { UserContext } from '../../context/UserContext'
 import Head from '../Head'
 
 const Conta = () => {
