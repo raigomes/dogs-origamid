@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import styles from './Conta.module.css'
-import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import Dashboard from '../../img/dashboard.svg?react'
 import Bars from '../../img/bars.svg?react'
 import Plus from '../../img/plus.svg?react'

@@ -1,14 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
-import { TOKEN_POST } from "../../api/services";
 import { UserContext } from "../../context/UserContext";
+import { useLogin } from "../../hooks/useLogin";
 
 const LoginForm = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const { login, setToken } = useContext(UserContext)
+  const { login } = useContext(UserContext);
+  const { postToken } = useLogin();
 
   function setError(text) {
     setMessage(
@@ -16,27 +17,18 @@ const LoginForm = () => {
     );
   }
 
-  function handleLogin(e) {
+  async function handleLogin(e) {
     e.preventDefault();
 
-    const { endpoint, method, headers, body } = TOKEN_POST(username, password);
-
-    fetch(endpoint, {
-      method,
-      headers,
-      body: JSON.stringify(body),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (!data.token) return setError("Dados incorretos.");
-        setToken(data.token);
-        login()
-      })
-      .catch((e) => {
-        console.error("[Dogs]", e);
-        setError("Erro desconhecido");
-        sair()
-      });
+    try {
+      const token = await postToken(username, password);
+      if (token) login();
+      else setError("Dados incorretos.");
+    } catch(e) {
+      console.error("[Dogs]", e);
+      setError("Erro desconhecido");
+      sair()
+    }
   }
 
   return (

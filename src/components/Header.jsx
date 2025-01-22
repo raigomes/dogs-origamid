@@ -4,10 +4,12 @@ import Dog from "../img/dog.svg?react";
 import { Link } from "react-router-dom";
 import { USER_GET } from "../api/services";
 import { UserContext } from "../context/UserContext";
+import { useLogin } from "../hooks/useLogin";
 
 const Header = () => {
   const [user, setUser] = useState(null);
-  const { loggedIn, getToken } = useContext(UserContext)
+  const { loggedIn } = useContext(UserContext)
+  const { getToken } = useLogin()
 
   useEffect(() => {
     const token = getToken();
