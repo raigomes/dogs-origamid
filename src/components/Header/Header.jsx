@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styles from "./Header.module.css";
-import Dog from "../img/dog.svg?react";
+import Dog from "../../img/dog.svg?react";
 import { Link } from "react-router-dom";
 import { USER_GET } from "../../api/services";
 import { UserContext } from "../../context/UserContext";

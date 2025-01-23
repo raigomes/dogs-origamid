@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Footer.module.css'
-import Dog from '../img/dog.svg?react'
+import Dog from '../../img/dog.svg?react'
 
 const Footer = () => {
   return (
