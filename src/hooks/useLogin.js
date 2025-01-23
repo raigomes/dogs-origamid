@@ -28,10 +28,12 @@ export const useLogin = () => {
         body: JSON.stringify(body),
       });
       const data = await response.json();
+
+      if(!response.ok) throw new Error(data.message)
+
       setToken(data.token)
       return data.token;
     } catch (e) {
-      console.error(e);
       return null;
     }
   };

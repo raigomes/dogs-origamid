@@ -2,14 +2,12 @@ import React, { useContext, useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
-import { useLogin } from "../../hooks/useLogin";
 
 const LoginForm = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
-  const { login } = useContext(UserContext);
-  const { postToken } = useLogin();
+  const { login, sair } = useContext(UserContext);
 
   function setError(text) {
     setMessage(
@@ -21,12 +19,9 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const token = await postToken(username, password);
-      if (token) login();
-      else setError("Dados incorretos.");
+      await login(username, password)
     } catch(e) {
-      console.error("[Dogs]", e);
-      setError("Erro desconhecido");
+      setError(e.message)
       sair()
     }
   }

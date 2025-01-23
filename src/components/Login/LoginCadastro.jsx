@@ -3,7 +3,6 @@ import styles from "./Login.module.css";
 import Head from "../Head";
 import { USER_POST } from "../../api/services";
 import { UserContext } from "../../context/UserContext";
-import { useLogin } from "../../hooks/useLogin";
 
 const LoginCadastro = () => {
   const [username, setUserName] = useState("");
@@ -11,7 +10,6 @@ const LoginCadastro = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const { login } = useContext(UserContext);
-  const { postToken } = useLogin();
 
   function setError(text) {
     setMessage(
@@ -37,8 +35,7 @@ const LoginCadastro = () => {
 
       if (!response.ok) throw new Error(data.message);
       
-      const token = await postToken(username, password);
-      if (token) login();
+      await login(username, password);
     } catch (e) {
       setError(e.message);
     }

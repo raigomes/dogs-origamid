@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const { getToken, validateToken, deleteToken } = useLogin()
+  const { getToken, validateToken, deleteToken, postToken } = useLogin();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,13 +13,15 @@ const UserProvider = ({ children }) => {
     validateToken(token);
   }, []);
 
-  const login = () => {
+  const login = async (username, password) => {
+    const token = await postToken(username, password);
+    if (!token) throw new Error("Dados incorretos");
     setLoggedIn(true);
     navigate("/conta");
   };
 
   const sair = () => {
-    deleteToken()
+    deleteToken();
     setLoggedIn(false);
     navigate("/login");
   };
