@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Login.module.css";
 import Head from "../Head";
 import { USER_POST } from "../../api/services";
-import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import { useLogin } from "../../hooks/useLogin";
 
 const LoginCadastro = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
+  const { login } = useContext(UserContext);
+  const { postToken } = useLogin();
 
   function setError(text) {
     setMessage(
@@ -35,7 +37,8 @@ const LoginCadastro = () => {
 
       if (!response.ok) throw new Error(data.message);
       
-      navigate("/conta");
+      const token = await postToken(username, password);
+      if (token) login();
     } catch (e) {
       setError(e.message);
     }
