@@ -16,6 +16,7 @@ import Profile from "./components/Profile";
 import Erro404 from "./components/Erro404";
 import PhotoPage from "./components/Photo/PhotoPage";
 import UserProvider from "./context/UserProvider";
+import LoginResetar from "./components/Login/LoginResetar";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
               <Route path="login" element={<Login />}>
                 <Route index element={<LoginForm />} />
                 <Route path="perdeu" element={<LoginPerdeu />} />
+                <Route path="resetar" element={<LoginResetar />} />
                 <Route path="criar" element={<LoginCadastro />} />
               </Route>
               <Route path="conta" element={<Conta />}>
