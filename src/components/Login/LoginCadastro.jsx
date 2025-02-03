@@ -3,6 +3,7 @@ import styles from "./Login.module.css";
 import Head from "../Head";
 import { USER_POST } from "../../api/services";
 import { UserContext } from "../../context/UserContext";
+import Message, { ERROR } from "../Message";
 
 const LoginCadastro = () => {
   const [username, setUserName] = useState("");
@@ -10,12 +11,6 @@ const LoginCadastro = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const { login } = useContext(UserContext);
-
-  function setError(text) {
-    setMessage(
-      <p style={{ color: "rgb(255, 51, 17)", margin: "1rem 0px" }}>{text}</p>
-    );
-  }
 
   async function handleCadastro(e) {
     e.preventDefault();
@@ -37,7 +32,7 @@ const LoginCadastro = () => {
       
       await login(username, password);
     } catch (e) {
-      setError(e.message);
+      setMessage(<Message type={ERROR} text={e.message} />)
     }
   }
 

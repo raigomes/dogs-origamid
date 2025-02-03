@@ -9,19 +9,13 @@ const LoginForm = () => {
   const [message, setMessage] = useState(null);
   const { login, sair } = useContext(UserContext);
 
-  function setError(text) {
-    setMessage(
-      <p style={{ color: "rgb(255, 51, 17)", margin: "1rem 0px" }}>{text}</p>
-    );
-  }
-
   async function handleLogin(e) {
     e.preventDefault();
 
     try {
       await login(username, password)
     } catch(e) {
-      setError(e.message)
+      setMessage(<Message type={ERROR} text={e.message} />)
       sair()
     }
   }
