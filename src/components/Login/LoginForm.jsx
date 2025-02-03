@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./Login.module.css";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
+import Message, { ERROR } from "../Message";
 
 const LoginForm = () => {
   const [username, setUserName] = useState("");
