@@ -97,3 +97,9 @@
     width: 3rem;
     border-radius: .2rem;
 }
+
+.error {
+    color: #f31;
+    font-size: .875rem;
+    margin-top: .25rem;
+}

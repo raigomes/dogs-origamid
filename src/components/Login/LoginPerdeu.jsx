@@ -7,10 +7,13 @@ import Message, { ERROR, SUCCESS } from "../Message";
 const LoginPerdeu = () => {
   const [login, setLogin] = useState("");
   const [message, setMessage] = useState(null)
+  const [emptyMessage, setEmptyMessage] = useState(null)
   const formRef = useRef()
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if(!login) return setEmptyMessage(true)
 
     try {
       const url = `${window.location.origin}/login/resetar`;
@@ -53,6 +56,7 @@ const LoginPerdeu = () => {
             value={login}
             onChange={(e) => setLogin(e.target.value)}
           />
+          {emptyMessage && <p className={styles.error}>Preencha um valor.</p>}
         </div>
         <button className={styles.button}>Enviar Email</button>
       </form>
