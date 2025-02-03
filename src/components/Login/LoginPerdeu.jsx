@@ -32,7 +32,8 @@ const LoginPerdeu = () => {
         formRef.current.remove()
         setMessage(<Message type={SUCCESS} text="Email enviado." />)
       } else {
-        setMessage(<Message type={ERROR} text="Tente novamente mais tarde." />)
+        const data = await response.json()
+        setMessage(<Message type={ERROR} text={data.message} />)
       }
     } catch (e) {
       setMessage(<Message type={ERROR} text="Erro interno" />)
