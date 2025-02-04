@@ -10,7 +10,7 @@ const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const token = getToken();
-    validateToken(token);
+    setLoggedIn(validateToken(token));
   }, []);
 
   const login = async (username, password) => {
