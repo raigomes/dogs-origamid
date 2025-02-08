@@ -1,5 +1,5 @@
 import React from "react";
-import { TOKEN_POST, TOKEN_VALIDATE_POST } from "../api/services";
+import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from "../api/services";
 
 const TOKEN = "dog_token";
 
@@ -50,11 +50,20 @@ export const useLogin = () => {
     localStorage.removeItem(TOKEN);
   }
 
+  const getUser = async () => {
+    const token = getToken()
+    const { endpoint, method, headers } = USER_GET(token);
+    const response = await fetch(endpoint, { method, headers });
+    const data = await response.json()
+    return data
+  }
+
   return {
     validateToken,
     getToken,
     setToken,
     postToken,
     deleteToken,
+    getUser
   };
 };

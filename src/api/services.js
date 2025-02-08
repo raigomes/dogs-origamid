@@ -35,7 +35,7 @@ export const TOKEN_VALIDATE_POST = (token) => ({
 
 export const USER_GET = (token) => ({
   endpoint: `${URL}/api/user`,
-  method: "POST",
+  method: "GET",
   headers: {
     Authorization: `Bearer ${token}`,
   },
