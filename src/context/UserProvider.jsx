@@ -8,9 +8,17 @@ const UserProvider = ({ children }) => {
   const { getToken, validateToken, deleteToken, postToken } = useLogin();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = getToken();
-    setLoggedIn(validateToken(token));
+  useEffect(() => {  
+    async function validateLogin() {
+      const token = getToken()
+  
+      if(!token) setLoggedIn(false);
+  
+      const isLogged = await validateToken(token)
+      setLoggedIn(isLogged)
+    };
+
+    validateLogin();
   }, []);
 
   const login = async (username, password) => {
