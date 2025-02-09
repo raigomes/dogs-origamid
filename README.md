@@ -1,6 +1,6 @@
 # Dogs
 
-Rede Social de Cachorros (similar a https://dogs.origamid.dev/).
+Rede Social de Cachorros (https://dogs-origamid-raigomes.vercel.app/).
 
 Projeto Final do curso React Completo da Origamid.
 
