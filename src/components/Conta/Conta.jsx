@@ -16,33 +16,30 @@ const Conta = () => {
   const location = useLocation();
 
   useEffect(() => {
-    async function updateTitle() {
+    async function redirectLogin() {
       const token = getToken();
       if (!token) sair();
-
-      try {
-        const isValid = await validateToken(token);
-        if (!isValid) sair();
-        
-        switch (location.pathname) {
-          case "/conta":
-            setTitle("Minha Conta");
-            break;
-          case "/conta/estatisticas":
-            setTitle("Estatísticas");
-            break;
-          case "/conta/postar":
-            setTitle("Poste Sua Foto");
-            break;
-          default:
-            throw new Error("Rota Inválida");
-        }
-      } catch (e) {
-        console.error(e)
-      }
+      const isValid = await validateToken(token);
+      if (!isValid) sair();
     }
-    updateTitle();
-  }, []);
+    redirectLogin()
+  }, [])
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/conta":
+        setTitle("Minha Conta");
+        break;
+      case "/conta/estatisticas":
+        setTitle("Estatísticas");
+        break;
+      case "/conta/postar":
+        setTitle("Poste Sua Foto");
+        break;
+      default:
+        throw new Error("Rota Inválida");
+    }
+  }, [location]);
 
   if(!loggedIn || !title) return null
 
