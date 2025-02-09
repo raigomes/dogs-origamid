@@ -44,7 +44,7 @@ const Conta = () => {
     updateTitle();
   }, []);
 
-  if(!loggedIn) return null
+  if(!loggedIn || !title) return null
 
   return (
     <section className="container">
