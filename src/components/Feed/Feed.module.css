@@ -3,6 +3,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-bottom: 1rem;
+    justify-items: center;
 }
 
 .photo {
@@ -78,5 +79,10 @@
 @media (max-width: 40rem) {
     .feed {
         grid-template-columns: repeat(2,1fr);
+    }
+    
+    .photo:nth-child(2) {
+        grid-column: initial;
+        grid-row: initial;
     }
 }
