@@ -103,3 +103,17 @@
     font-size: .875rem;
     margin-top: .25rem;
 }
+
+@media (max-width: 40rem) {
+    .login {
+        grid-template-columns: 1fr;
+    }
+
+    .login:before {
+        display: none
+    }
+
+    .forms {
+        max-width: 100%
+    }
+}
