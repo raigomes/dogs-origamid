@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { PHOTOS_QUERY_GET } from "../../api/services";
 import Feed from "./Feed";
 
-const FeedList = ({ user=0, total=6 }) => {
+const FeedList = ({ user = 0, total = 6 }) => {
   const [page, setPage] = useState(1);
   const [feed, setFeed] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,13 +25,13 @@ const FeedList = ({ user=0, total=6 }) => {
   useEffect(() => {
     const fetchApi = () => {
       const { endpoint } = PHOTOS_QUERY_GET(page, user, total);
-  
+
       fetch(endpoint)
         .then((response) => response.json())
         .then((data) => {
           if (data.length > 0)
             setFeed([...feed, <Feed key={page} photos={data} />]);
-          else {
+          else if (page > 1) {
             setFeed([
               ...feed,
               <p
@@ -45,13 +45,13 @@ const FeedList = ({ user=0, total=6 }) => {
                 Não existem mais postagens.
               </p>,
             ]);
-            setInfinite(false)
+            setInfinite(false);
           }
         })
         .catch((error) => console.error(error))
         .finally(() => setLoading(false));
-    }
-  
+    };
+
     fetchApi();
   }, [page]);
 
