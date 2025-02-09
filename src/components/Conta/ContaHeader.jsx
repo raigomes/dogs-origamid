@@ -31,10 +31,10 @@ const NavMobile = ({ sair }) => {
     <>
       <button
         aria-label="Menu"
-        class={`${styles.mobileButton} ${active ? styles.mobileButtonActive : false}`}
+        className={`${styles.mobileButton} ${active ? styles.mobileButtonActive : false}`}
         onClick={() => setActive(!active)}
       ></button>
-      <nav class={`${styles.navMobile} ${active ? styles.navMobileActive : false}`}>
+      <nav className={`${styles.navMobile} ${active ? styles.navMobileActive : false}`}>
         <NavLink to="/conta" end>
           <Dashboard />
           Minhas Fotos
