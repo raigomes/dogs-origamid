@@ -3,40 +3,42 @@ import styles from "./Login.module.css";
 import Head from "../Head";
 import { PASSWORD_LOST_POST } from "../../api/services";
 import Message, { ERROR, SUCCESS } from "../Message";
+import Input from "../Forms/Input";
+import Button from "../Forms/Button";
+import useForm from "../../hooks/useForm";
 
 const LoginPerdeu = () => {
-  const [login, setLogin] = useState("");
-  const [message, setMessage] = useState(null)
-  const [emptyMessage, setEmptyMessage] = useState(null)
-  const formRef = useRef()
+  const login = useForm();
+  const [message, setMessage] = useState(null);
+  const formRef = useRef();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if(!login) return setEmptyMessage(true)
+    if (login.validate()) {
+      try {
+        const url = `${window.location.origin}/login/resetar`;
+        const { endpoint, method, headers, body } = PASSWORD_LOST_POST(
+          login.value,
+          url
+        );
 
-    try {
-      const url = `${window.location.origin}/login/resetar`;
-      const { endpoint, method, headers, body } = PASSWORD_LOST_POST(
-        login,
-        url
-      );
+        const response = await fetch(endpoint, {
+          method,
+          headers,
+          body: JSON.stringify(body),
+        });
 
-      const response = await fetch(endpoint, {
-        method,
-        headers,
-        body: JSON.stringify(body),
-      });
-
-      if(response.ok) {
-        formRef.current.remove()
-        setMessage(<Message type={SUCCESS} text="Email enviado." />)
-      } else {
-        const data = await response.json()
-        setMessage(<Message type={ERROR} text={data.message} />)
+        if (response.ok) {
+          formRef.current.remove();
+          setMessage(<Message type={SUCCESS} text="Email enviado." />);
+        } else {
+          const data = await response.json();
+          setMessage(<Message type={ERROR} text={data.message} />);
+        }
+      } catch (e) {
+        setMessage(<Message type={ERROR} text="Erro interno" />);
       }
-    } catch (e) {
-      setMessage(<Message type={ERROR} text="Erro interno" />)
     }
   }
 
@@ -45,21 +47,8 @@ const LoginPerdeu = () => {
       <Head title="Perdeu a senha | Dogs" description="" />
       <h1 className="title">Perdeu a senha?</h1>
       <form ref={formRef} onSubmit={handleSubmit}>
-        <div className={styles.wrapper}>
-          <label htmlFor="login" className={styles.label}>
-            Email / Usuário
-          </label>
-          <input
-            id="login"
-            name="login"
-            type="text"
-            className={styles.input}
-            value={login}
-            onChange={(e) => setLogin(e.target.value)}
-          />
-          {emptyMessage && <p className={styles.error}>Preencha um valor.</p>}
-        </div>
-        <button className={styles.button}>Enviar Email</button>
+        <Input label="Email / Usuário" type="text" name="login" {...login} />
+        <Button>Enviar Email</Button>
       </form>
       {message}
     </section>

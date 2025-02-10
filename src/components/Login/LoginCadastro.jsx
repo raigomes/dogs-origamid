@@ -4,35 +4,40 @@ import Head from "../Head";
 import { USER_POST } from "../../api/services";
 import { UserContext } from "../../context/UserContext";
 import Message, { ERROR } from "../Message";
+import useForm from "../../hooks/useForm";
+import Input from "../Forms/Input";
+import Button from "../Forms/Button";
 
 const LoginCadastro = () => {
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  const username = useForm();
+  const password = useForm();
+  const email = useForm("email");
   const [message, setMessage] = useState(null);
   const { login } = useContext(UserContext);
 
   async function handleCadastro(e) {
     e.preventDefault();
 
-    try {
-      const { endpoint, method, headers, body } = USER_POST(
-        username,
-        password,
-        email
-      );
-      const response = await fetch(endpoint, {
-        method,
-        headers,
-        body: JSON.stringify(body),
-      });
-      const data = await response.json();
+    if (username.validate() && password.validate() && email.validate()) {
+      try {
+        const { endpoint, method, headers, body } = USER_POST(
+          username.value,
+          password.value,
+          email.value
+        );
+        const response = await fetch(endpoint, {
+          method,
+          headers,
+          body: JSON.stringify(body),
+        });
+        const data = await response.json();
 
-      if (!response.ok) throw new Error(data.message);
-      
-      await login(username, password);
-    } catch (e) {
-      setMessage(<Message type={ERROR} text={e.message} />)
+        if (!response.ok) throw new Error(data.message);
+
+        await login(username, password);
+      } catch (e) {
+        setMessage(<Message type={ERROR} text={e.message} />);
+      }
     }
   }
 
@@ -41,46 +46,10 @@ const LoginCadastro = () => {
       <Head title="Crie sua conta | Dogs" description="" />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={handleCadastro}>
-        <div className={styles.wrapper}>
-          <label htmlFor="username" className={styles.label}>
-            Usuário
-          </label>
-          <input
-            id="username"
-            name="username"
-            type="text"
-            className={styles.input}
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-        </div>
-        <div className={styles.wrapper}>
-          <label htmlFor="email" className={styles.label}>
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            className={styles.input}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className={styles.wrapper}>
-          <label htmlFor="password" className={styles.label}>
-            Senha
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            className={styles.input}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button className={styles.button}>Cadastrar</button>
+        <Input label="Usuário" type="text" name="username" {...username} />
+        <Input label="Email" type="text" name="email" {...email} />
+        <Input label="Senha" type="password" name="password" {...password} />
+        <Button>Cadastrar</Button>
         {message}
       </form>
     </section>
